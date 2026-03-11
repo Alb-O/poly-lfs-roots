@@ -121,8 +121,11 @@ def pull_root(args):
 
     include = join_globs(root.get("include", [])) or join_globs(manifest.get("fetchInclude", []))
     exclude = join_globs(root.get("exclude", [])) or join_globs(manifest.get("fetchExclude", []))
+    repo = root.get("repoPath")
+    if not isinstance(repo, str) or not repo:
+        repo = args.repo
 
-    command = ["git", "-C", args.repo, "lfs", "pull"]
+    command = ["git", "-C", repo, "lfs", "pull"]
     if args.remote:
         command.append(args.remote)
     if include is not None:

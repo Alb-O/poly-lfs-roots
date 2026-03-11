@@ -46,11 +46,13 @@ Then opt into machine-local configuration in `devenv.local.nix`:
     };
     roots = {
       models = {
-        path = "/srv/assets/nusim/models";
+        repoPath = "/home/albert/lfs/assets";
+        path = "/home/albert/lfs/assets/models";
         include = [ "models/**" ];
       };
       textures = {
-        path = "/srv/assets/nusim/textures";
+        repoPath = "/home/albert/lfs/assets";
+        path = "/home/albert/lfs/assets/textures";
         include = [ "textures/**" ];
       };
     };
@@ -64,6 +66,7 @@ Then opt into machine-local configuration in `devenv.local.nix`:
   `~/.gitconfig`.
 - `sharedStorage` points multiple repos at one LFS object store, but checked-out
   working tree files are still separate. Use canonical asset root checkouts plus
-  env vars or symlinks to avoid duplicate materialization.
+  env vars or custom asset sources to avoid duplicate materialization.
 - `lfs-roots-pull <name>` is intended for slice fetches using the root's
-  include/exclude globs.
+  include/exclude globs. If `repoPath` is set, the pull runs in that external
+  checkout instead of the consumer repo.

@@ -23,6 +23,7 @@ let
       exclude = root.exclude;
       include = root.include;
       path = root.path;
+      repoPath = root.repoPath;
     }
   ) cfg.roots;
   manifestData = {
@@ -165,6 +166,12 @@ in
               type = lib.types.listOf lib.types.str;
               default = [ ];
               description = "Globs passed to `git lfs pull --include` for this root.";
+            };
+
+            repoPath = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+              description = "Absolute path to the Git checkout that should be used when fetching this root.";
             };
 
             exclude = lib.mkOption {
