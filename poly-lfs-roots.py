@@ -137,7 +137,7 @@ def pull_root(args):
 
 
 def build_parser():
-    parser = argparse.ArgumentParser(description="Manage dvnv-lfs-roots manifests and repo-local Git LFS config.")
+    parser = argparse.ArgumentParser(description="Manage poly-lfs-roots manifests and repo-local Git LFS config.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     configure_parser = subparsers.add_parser("configure", help="Apply repo-local Git LFS config from the manifest.")
