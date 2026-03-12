@@ -12,7 +12,7 @@ let
     else toString config.devenv.root;
   escape = lib.escapeShellArg;
   rootEnvVarName =
-    name: "DVNV_LFS_ROOT_" + lib.toUpper (builtins.replaceStrings [ "-" "." "/" ] [ "_" "_" "_" ] name);
+    name: "POLY_LFS_ROOT_" + lib.toUpper (builtins.replaceStrings [ "-" "." "/" ] [ "_" "_" "_" ] name);
   manifestRoots = lib.mapAttrs (
     name: root: {
       description = root.description;
@@ -159,7 +159,7 @@ in
             envVar = lib.mkOption {
               type = lib.types.nullOr lib.types.str;
               default = null;
-              description = "Environment variable name to export for this root path. Defaults to `DVNV_LFS_ROOT_<NAME>`.";
+              description = "Environment variable name to export for this root path. Defaults to `POLY_LFS_ROOT_<NAME>`.";
             };
 
             include = lib.mkOption {
@@ -194,7 +194,7 @@ in
       })
       // rootEnv
       // {
-        DVNV_LFS_ROOTS_MANIFEST = materializedManifestPath;
+        POLY_LFS_ROOTS_MANIFEST = materializedManifestPath;
       };
 
     files."${cfg.manifestPath}".json = manifestData;
