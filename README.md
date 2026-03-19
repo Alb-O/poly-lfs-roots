@@ -1,7 +1,7 @@
-# poly-lfs-roots
+# ar_lfs_roots
 
-Reusable `devenv` module for machine-local Git LFS root orchestration in the
-polyrepo.
+Reusable `devenv` module for machine-local Git LFS root orchestration in an
+AgentRoots workspace.
 
 The module is intentionally focused on coordination, not blob storage:
 
@@ -25,11 +25,11 @@ The module is intentionally focused on coordination, not blob storage:
 
 ```yaml
 inputs:
-  poly-lfs-roots:
-    url: github:Alb-O/poly-lfs-roots
+  ar_lfs_roots:
+    url: github:Alb-O/ar_lfs_roots
     flake: false
 imports:
-  - poly-lfs-roots
+  - ar_lfs_roots
 ```
 
 Then opt into machine-local configuration in `devenv.local.nix`:
@@ -38,7 +38,7 @@ Then opt into machine-local configuration in `devenv.local.nix`:
 {
   lfsRoots = {
     enable = true;
-    sharedStorage = "/home/albert/.local/share/poly/git-lfs";
+    sharedStorage = "/home/albert/.local/share/agentroots/git-lfs";
     remote = {
       name = "asset-store";
       lfsurl = "ssh://asset-store.example/srv/git-lfs/nusim.git/info/lfs";

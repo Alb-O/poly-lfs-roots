@@ -3,7 +3,7 @@
 let
   cfg = config.lfsRoots;
   pythonBin = lib.getExe pkgs.python3;
-  helperScript = ./poly-lfs-roots.py;
+  helperScript = ./ar_lfs_roots.py;
   manifestOutputPath = config.outputs.lfs_roots_manifest;
   materializedManifestPath = "${toString config.devenv.root}/${cfg.manifestPath}";
   repoRoot =
@@ -206,7 +206,7 @@ in
     scripts = {
       lfs-roots-configure = {
         exec = configureExec;
-        description = "Apply repo-local Git LFS settings from the managed poly-lfs-roots manifest.";
+        description = "Apply repo-local Git LFS settings from the managed ar_lfs_roots manifest.";
       };
 
       lfs-roots-show = {
@@ -214,7 +214,7 @@ in
           set -euo pipefail
           ${pythonBin} ${helperScript} show --manifest ${escape manifestOutputPath}
         '';
-        description = "Print the managed poly-lfs-roots manifest.";
+        description = "Print the managed ar_lfs_roots manifest.";
       };
 
       lfs-roots-root-path = {
